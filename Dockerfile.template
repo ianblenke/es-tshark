@@ -1,0 +1,9 @@
+ARG ELASTICSEARCH_VERSION
+FROM docker.elastic.co/logstash/logstash:${ELASTICSEARCH_VERSION}
+
+USER root
+RUN yum install -y curl
+
+ADD template.sh /template.sh
+
+CMD /template.sh

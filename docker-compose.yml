@@ -1,0 +1,33 @@
+version: '2.1'
+
+services:
+
+  tshark_template:
+    build:
+      context: .
+      args:
+        ELASTICSEARCH_VERSION: ${ELASTICSEARCH_VERSION}
+      dockerfile: Dockerfile.template
+    image: sofwerx/es-tshark:${ELASTICSEARCH_VERSION}
+    container_name: tshark_template
+    hostname: tshark_template
+    environment:
+      ES_HOST: ${ES_HOST}
+      ES_USER: ${ES_USER}
+      ES_PASSWORD: ${ES_PASSWORD}
+
+  tshark_pcap:
+    build:
+      context: .
+      args:
+        ELASTICSEARCH_VERSION: ${ELASTICSEARCH_VERSION}
+      dockerfile: Dockerfile.pcap
+    image: sofwerx/es-tshark:${ELASTICSEARCH_VERSION}
+    container_name: tshark_pcap
+    hostname: tshark_pcap
+    environment:
+      ES_HOST: ${ES_HOST}
+      ES_USER: ${ES_USER}
+      ES_PASSWORD: ${ES_PASSWORD}
+      NETWORK_INTERFACE: ${NETWORK_INTERFACE}
+
